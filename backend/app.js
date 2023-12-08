@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
 
+import unitRoute from "./unit/unit-route.js";
+
 const conf = dotenv.config();
 if (conf.error) {
     throw conf.error;
@@ -16,6 +18,8 @@ app.use(cors());
 app.get("/", (req, res) => {
     res.json("MAIN PAGE");
 })
+
+app.use("/units", unitRoute);
 
 mongoose
     .connect(dbURL)
